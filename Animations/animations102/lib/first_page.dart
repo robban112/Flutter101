@@ -22,6 +22,7 @@ class _FirstPageState extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey,
       appBar: AppBar(
         title: Text(widget.title),
       ),
@@ -29,7 +30,7 @@ class _FirstPageState extends State<FirstPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            _buidHero1(),
+            _buidHero2(),
             const SizedBox(height: 24),
             Text(
               'First page',
@@ -51,7 +52,7 @@ class _FirstPageState extends State<FirstPage> {
   /// Builds the hero widget on first page
   Hero _buidHero1() {
     return Hero(
-      tag: 'hero_widget',
+      tag: 'asd',
       child: Container(height: 40, width: 40, color: Colors.red),
     );
   }
@@ -67,8 +68,8 @@ class _FirstPageState extends State<FirstPage> {
           builder: (context, _) => Transform.rotate(
             angle: animation.value * 1.1,
             child: Container(
-              height: 40,
-              width: 40,
+              height: 80,
+              width: 80,
               color: Colors.yellow,
             ),
           ),

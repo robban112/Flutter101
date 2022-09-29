@@ -38,7 +38,7 @@ class ModalPreviewPage extends StatelessWidget {
               child: Hero(
                 tag: 'hero',
                 child: SizedBox(
-                  height: 200,
+                  height: 50,
                   child: Image.network('https://picsum.photos/250?image=1'),
                 ),
               ),
@@ -56,18 +56,18 @@ class ModalPreviewModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GestureDetector(
-        onTap: () => Navigator.of(context).pop(context),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.black.withOpacity(0.1),
-          ),
-          child: Hero(
-            tag: 'hero',
-            child: SizedBox(
-              child: Image.network(
-                'https://picsum.photos/250?image=1',
-                width: MediaQuery.of(context).size.width,
+      body: Center(
+        child: GestureDetector(
+          onTap: () => Navigator.of(context).pop(context),
+          child: Container(
+            child: Hero(
+              tag: 'hero',
+              child: SizedBox(
+                child: Image.network(
+                  'https://picsum.photos/250?image=1',
+                  height: 800,
+                  width: MediaQuery.of(context).size.width,
+                ),
               ),
             ),
           ),
@@ -100,13 +100,15 @@ class ModalPageRouteBuilder extends PageRouteBuilder {
     Animation<double> secondaryAnimation,
     Widget child,
   ) {
-    return ScaleTransition(
-      alignment: Alignment.center,
-      scale: Tween<double>(begin: 0.0, end: 1).chain(CurveTween(curve: Curves.easeIn)).animate(animation),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(200)),
-        child: child,
+    return Transform.rotate(
+      angle: animation.value * 1.5,
+      child: ScaleTransition(
+        alignment: Alignment.center,
+        scale: Tween<double>(begin: 0.0, end: 1).chain(CurveTween(curve: Curves.easeIn)).animate(animation),
+        child: FadeTransition(
+          opacity: Tween<double>(begin: 0.0, end: 1).animate(animation),
+          child: child,
+        ),
       ),
     );
   }
